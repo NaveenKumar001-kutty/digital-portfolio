@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #fcf5e6;
+      }
+
+      header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-family: Roboto;
+      }
+
+      header .profile {
+        margin-bottom: 20px;
+      }
+
+      header img {
+        border-radius: 50%;
+        width: 170px;
+        height: 170px;
+        border-style: groove;
+      }
+
+      header nav ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      header nav ul li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      header nav ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      section#about {
+        background: #fff;
+      }
+
+      section#projects {
+        background: #eaeaea;
+      }
+
+      .project {
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+
+      .project img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      footer a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .head {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="profile">
+        <img src="demo/demo/1737650779934.jpg" alt="Profile Picture" />
+        <h1>Naveenkumar A</h1>
+        <p>I Am A College Student</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about" class="smooth-scroll">About</a></li>
+          <li><a href="#projects" class="smooth-scroll">Projects</a></li>
+          <li><a href="#resume" class="smooth-scroll">Resume</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="about">
+      <h2 class="head">About Me</h2>
+      <p>
+        Hi! I'm a passionate web developer intresting to learn full stack web
+        development.
+      </p>
+      <h3>Skills</h3>
+      <ul>
+        <li>HTML & CSS</li>
+        <li>JavaScript</li>
+        <li>Python & SQL</li>
+        <li>Canva</li>
+        <li>Powerpoint</li>
+        <li>Communication</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2 class="head">Projects</h2>
+      <div class="project" onclick="openModal('project1')">
+        <ul>
+          <li>E-card Website</li>
+          <li>Learing portal</li>
+          <li>Weather site</li>
+          <li>Colloge portal</li>
+          <li>Mobile location tracking</li>
+        </ul>
+      </div>
+      <!-- Repeat for other projects -->
+    </section>
+
+    <section id="contact">
+      <center>
+        <h2 class="head">Resume</h2>
+        <a
+          href="demo/demo/kutty002.jpeg"
+          target="_blank"
+          class="download-button"
+          >Download CV</a
+        >
+      </center>
+    </section>
+
+    <!-- Modal Section -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Project Details</h2>
+        <div id="modal-description">
+          <!-- Dynamic project details will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Naveenkumar A</p>
+      <div>
+        <a
+          href="https://www.linkedin.com/in/naveen-kumar-80050b296?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/NaveenKumar001-kutty">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="script.js">
+            // Smooth Scroll for Navigation
+      document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+
+      // Modal functionality
+      function openModal(projectId) {
+          let modalDescription = '';
+
+          if (projectId === 'project1') {
+              modalDescription = `
+                  <h3>Project 1: Portfolio Website</h3>
+                  <p>This is a personal portfolio website I created using HTML, CSS, and JavaScript. It showcases my work as a developer.</p>
+              `;
+          } else if (projectId === 'project2') {
+              modalDescription = `
+                  <h3>Project 2: E-commerce Platform</h3>
+                  <p>This e-commerce platform was built with React and Node.js, designed to allow users to browse products and make purchases online.</p>
+              `;
+          }
+
+          document.getElementById('modal-description').innerHTML = modalDescription;
+          document.getElementById('modal').style.display = 'block';
+      }
+
+      function closeModal() {
+          document.getElementById('modal').style.display = 'none';
+      }
+
+      // Form Validation
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const message = document.getElementById('message').value;
+
+          if (name && email && message) {
+              alert("Thank you for your message! I'll get back to you soon.");
+              document.getElementById('contact-form').reset(); // Reset form fields
+          } else {
+              alert("Please fill in all fields.");
+          }
+      });
+    </script>
+  </body>
+</html>
